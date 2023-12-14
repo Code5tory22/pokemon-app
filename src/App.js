@@ -1,48 +1,42 @@
-import { useEffect, useState } from "react";
+import Form from "./components/Form";
+import "./App.css";
 
 function App() {
-  const [pokemon, setPokemon] = useState({});
+  // // gets next page
+  // async function nextPage() {
+  //   await fetch(pokemon.next)
+  //     .then((res) => res.json())
+  //     .then((data) => setPokemon(data));
 
-  useEffect(() => {
-    const data = getPokemonAPI();
-    setPokemon(data);
-  }, []);
+  //   return (
+  //     <ul>
+  //       {pokemon.results &&
+  //         pokemon.results.map((item) => <Pokemon pokemon={item} />)}
+  //     </ul>
+  //   );
+  // }
 
-  async function getPokemonAPI() {
-    await fetch("https://pokeapi.co/api/v2/pokemon?limit=15")
-      .then((res) => res.json())
-      .then((data) => setPokemon(data));
+  // // get previous page
+  // async function prevPage() {
+  //   await fetch(pokemon.previous)
+  //     .then((res) => res.json())
+  //     .then((data) => setPokemon(data));
+
+  //   return (
+  //     <ul>
+  //       {pokemon.results &&
+  //         pokemon.results.map((item) => <Pokemon pokemon={item} />)}
+  //     </ul>
+  //   );
+  // }
+  function setData(props) {
+    console.log(props);
   }
-
-  const nextPage = async () => {
-    await fetch(pokemon.next)
-      .then((res) => res.json())
-      .then((data) => setPokemon(data));
-
-    return (
-      <ul>
-        {pokemon.results &&
-          pokemon.results.map((item) => <Pokemon pokemon={item} />)}
-      </ul>
-    );
-  };
-
-  const prevPage = async () => {
-    await fetch(pokemon.previous)
-      .then((res) => res.json())
-      .then((data) => setPokemon(data));
-
-    return (
-      <ul>
-        {pokemon.results &&
-          pokemon.results.map((item) => <Pokemon pokemon={item} />)}
-      </ul>
-    );
-  };
 
   return (
     <div className="App">
-      <main>
+      <Form data={setData} />
+      {/* <main>
         <ul>
           {pokemon.results &&
             pokemon.results.map((item) => <Pokemon pokemon={item} />)}
@@ -51,13 +45,13 @@ function App() {
           <button onClick={prevPage}>Previous</button>
         )}
         <button onClick={nextPage}>Next</button>
-      </main>
+      </main> */}
     </div>
   );
 }
 
-function Pokemon(props) {
-  return <li>{props.pokemon.name}</li>;
-}
+// function Pokemon(props) {
+//   return <li>{props.pokemon.name}</li>;
+// }
 
 export default App;
